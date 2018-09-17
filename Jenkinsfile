@@ -5,7 +5,7 @@ pipeline{
 	stages{
 		stage('checkout'){
 			steps{
-				git 'link'
+				git 'https://github.com/sampath240/addressbook.git'
 			}
 		}
 		stage('Build'){
