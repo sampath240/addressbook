@@ -1,30 +1,27 @@
-node {
-   def mvnHome
-   def version 
-   stage('Preparation') {
-      git 'https://github.com/SeshagiriSriram/addressbook.git'
-      mvnHome = tool 'MAVEN_HOME'
-	  version = '2.3.5' 
-   }
-   stage('Build') {
-        withMaven(
-        maven: 'MAVEN_HOME', // Maven installation declared in the Jenkins "Global Tool Configuration"
-        mavenSettingsConfig: 'settings.xml', // Maven settings.xml file defined with the Jenkins Config File Provider Plugin
-        mavenLocalRepo: 'd:/repos') {
-
-      if (isUnix()) {
-         sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore test -Pfunctional-test -DSkipUTs=true -DskipTests=true"
-      } else {
-         bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore test -Pfunctional-test -DSkipUTs=true -DskipTests=true/)
-      }
-    } // withMaven will discover the generated Maven artifacts, JUnit reports and FindBugs reports
-    
-
-   }
-   stage('Results') {
-      junit '**/target/surefire-reports/TEST-*.xml'
-      archive 'target/*.jar'
-   }
-     stage('DeployToServer') {
-	 } 
-} 
+pipeline{
+	tools{
+		maven 'M3'
+	}
+	stages{
+		stage('checkout'){
+			steps{
+				git 'link'
+			}
+		}
+		stage('Build'){
+			steps{
+				sh 'mvn clean compile'
+			}
+		}
+		stage('Test'){
+			steps{
+				sh 'mvn test'
+				junit '**/target/surefire-reports/Test-*.xml'
+			}
+		}
+		stage('package'){
+			steps{
+				sh 'mvn package'
+			}
+		}
+	}
