@@ -44,8 +44,8 @@
 
     <pluginRepositories>
         <pluginRepository>
-            <id>vaadin-snapshots</id>
-            <url>http://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
+            <id>admin</id>
+            <url>http://35.196.202.70:8081/#admin/repository/repositories:releases</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
@@ -53,30 +53,6 @@
                 <enabled>true</enabled>
             </snapshots>
         </pluginRepository>
-		 <pluginRepository>
-        <id>apache.snapshots</id>
-        <name>Apache Snapshots</name>
-        <url>http://repository.apache.org/content/groups/snapshots-group/</url>
-        <releases>
-            <enabled>false</enabled>
-        </releases>
-        <snapshots>
-            <enabled>true</enabled>
-        </snapshots>
-    </pluginRepository>
-	<pluginRepository>
-        <id>apache.public</id>
-        <name>Apache public</name>
-        <url>http://repository.apache.org/content/groups/public</url>
-        <releases>
-            <enabled>true</enabled>
-        </releases>
-        <snapshots>
-            <enabled>false</enabled>
-        </snapshots>
-    </pluginRepository>
-    </pluginRepositories>
-
 
  <modules>
         <module>addressbook_main</module>
