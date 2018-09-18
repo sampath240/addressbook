@@ -11,6 +11,9 @@ pipeline {
                     archiveArtifacts artifacts: '**/target/*.war'
                 }
               }
-            }
+              stage('Publish') {
+                nexusPublisher nexusInstanceId: 'admin', nexusRepositoryId: 'releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: '/var/lib/jenkins/workspace/addressbook1/addressbook_main/target/addressbook.war']], mavenCoordinate: [artifactId: '', groupId: '', packaging: 'war', version: '2.23']]]
+             }
+        }
     } 
 }
